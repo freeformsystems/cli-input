@@ -1,6 +1,6 @@
 {
   "name": "cli-input",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Prompt and user input library.",
   "author": "muji <noop@xpm.io>",
   "repository": {

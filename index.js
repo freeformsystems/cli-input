@@ -453,6 +453,12 @@ Prompt.prototype.multiline = function(options, cb, lines, vpos) {
     , newline = options.newline !== undefined ? options.newline : true
     , prompt = options.prompt || {blank: true};
 
+  if (typeof key !== 'function') {
+    key = (function(key, input) {
+      return key === input;
+    }).bind(this, key);
+  }
+
   // disable history for multiline
   var history = readline.history;
   readline.history = [];
@@ -461,7 +467,7 @@ Prompt.prototype.multiline = function(options, cb, lines, vpos) {
     props = props || {};
 
     // handle exit key
-    if(c === key) {
+    if (key(c)) {
       input.removeListener('keypress', onkeypress);
       if(newline) {
         output.write(EOL);
